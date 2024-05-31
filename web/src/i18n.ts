@@ -1,7 +1,10 @@
 import i18n, { BackendModule, FallbackLng, FallbackLngObjList } from "i18next";
 import { initReactI18next } from "react-i18next";
 import { findNearestMatchedLanguage } from "./utils/i18n";
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
+// 配置国际化语言
 export const locales = [
   "ar",
   "de",
@@ -35,6 +38,7 @@ const fallbacks = {
   zh: ["zh-Hans", "en"],
 } as FallbackLngObjList;
 
+// 本地懒加载
 const LazyImportPlugin: BackendModule = {
   type: "backend",
   init: function () {},
@@ -52,6 +56,7 @@ const LazyImportPlugin: BackendModule = {
 
 i18n
   .use(LazyImportPlugin)
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     detection: {
@@ -60,7 +65,7 @@ i18n
     fallbackLng: {
       ...fallbacks,
       ...{ default: ["en"] },
-    } as FallbackLng,
+    } as FallbackLng,  //回退的语言
   });
 
 export default i18n;

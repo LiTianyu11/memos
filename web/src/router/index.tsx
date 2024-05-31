@@ -30,6 +30,7 @@ export enum Routes {
   ABOUT = "/about",
   AUTH = "/auth",
 }
+// 路由
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
           },
           {
             path: "signup",
-            element: <SignUp />,
+            element: <SignUp />,  
           },
           {
             path: "callback",
